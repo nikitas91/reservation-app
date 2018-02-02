@@ -19,6 +19,30 @@ var restaurantTables = [
         "phoneNumber": "5201234567",
         "customerEmail": "nick@example.com",
         "customerID": "nick"
+    },
+    {
+        "customerName": "Nick",
+        "phoneNumber": "5201234567",
+        "customerEmail": "nick@example.com",
+        "customerID": "nick"
+    },
+    {
+        "customerName": "Nick",
+        "phoneNumber": "5201234567",
+        "customerEmail": "nick@example.com",
+        "customerID": "nick"
+    },
+    {
+        "customerName": "Nick",
+        "phoneNumber": "5201234567",
+        "customerEmail": "nick@example.com",
+        "customerID": "nick"
+    },
+    {
+        "customerName": "Nick",
+        "phoneNumber": "5201234567",
+        "customerEmail": "nick@example.com",
+        "customerID": "nick"
     }
 ];
 var tableLimit = 5;
@@ -49,12 +73,14 @@ app.get("/api/waitlist", function (req, res) {
 app.post("/api/new", function (req, res) {
     var newTable = req.body;
 
-    if (restaurantTables.length >= tableLimit)
+    if (restaurantTables.length >= tableLimit){
         waitingList.push(newTable);
-    else
+        res.json("wait");
+    }
+    else{
         restaurantTables.push(newTable);
-
-    res.json(newTable);
+        res.json("reserve");
+    }
 });
 
 app.post("/api/delete", function(req, res){

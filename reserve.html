@@ -93,14 +93,13 @@
                 customerEmail: $('#reserve_email').val().trim(),
                 customerID: $('#reserve_uniqueID').val().trim()
             };
-            console.log(newRes);
             $.post("/api/new", newRes)
             .then(function (data) {
                 console.log(data);
-                if (data) {
+                if (data == "reserve") {
                     alert("YOU ARE A WONDERFUL HUMAN BEING AND YOU ARE BOOKED!")
                 }
-                else {
+                else if(data == "wait") {
                     alert("YOU HAVE FAILED TO SECURE A BOOKING AND ARE NOW ON THE WAITING LIST. BETTER LUCK NEXT TIME.")
                 }
 

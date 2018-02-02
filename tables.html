@@ -15,7 +15,8 @@
 
   <div class="container">
     <div class="jumbotron" style="text-align:center">
-      <h1><span class="glyphicon glyphicon-fire"></span>Hells Kitchen Express</h1>
+      <h1>
+        <span class="glyphicon glyphicon-fire"></span>Hells Kitchen Express</h1>
       <h3>The best reservation system on the net!</h3>
       <hr>
       <a href="/reserve">
@@ -24,7 +25,8 @@
       </a>
       <a href="/">
         <button type="button" class="btn btn-default btn-lg">
-          <span class="glyphicon glyphicon-home"></span> </button>
+          <span class="glyphicon glyphicon-home"></span>
+        </button>
       </a>
 
     </div>
@@ -59,32 +61,57 @@
         <p>Control Panel</p>
         <p>
           <a href="#" id="clear">Clear Table</a>
-           |
+          |
           <a href="/api/tables">API Table Link</a>
-           |
+          |
           <a href="api/waitlist">API Wait List</a>
         </p>
       </div>
     </footer>
   </div>
-<!--     SERVER CODE   -->
+  <!--     SERVER CODE   -->
 
   <script type="text/javascript">
 
-      $.get("/api/tables", function (data) {
-        console.log(data);
-        for (var i = 0; i < data.length; i++) {
-            var newDiv = $("<div class='well'>").attr("id","tablewell" + i);
-            var newH2 = $("<h2>");
-            var newSpan = $("<span class='label label-primary'>").text(i + 1);
+    $.get("/api/tables", function (data) {
+      console.log(data);
 
-            newH2.append(newSpan);
-            newH2.append(' | ' + data[i].customerName);
-            newDiv.append(newH2);
+      for (var i = 0; i < data.length; i++) {
+        var newDiv = $("<div class='well'>").attr("id", "tablewell" + i);
+        var newH2 = $("<h2>");
+        var newSpan = $("<span class='label label-primary'>").text(i + 1);
 
-            $("#reservations").append(newDiv);
-        }
-      });
+        newH2.append(newSpan);
+        newH2.append(' | ' + data[i].customerName);
+        newDiv.append(newH2);
+
+        $("#reservations").append(newDiv);
+      }
+    });
+
+    $.get("/api/waitlist", function (data) {
+      console.log(data);
+
+      for (var i = 0; i < data.length; i++) {
+        var newDiv = $("<div class='well'>").attr("id", "tablewell" + i);
+        var newH2 = $("<h2>");
+        var newSpan = $("<span class='label label-primary'>").text(i + 1);
+
+        newH2.append(newSpan);
+        newH2.append(' | ' + data[i].customerName);
+        newDiv.append(newH2);
+
+        $("#waitlist").append(newDiv);
+      }
+    });
+
+    $("#clear").on("click", function (event) {
+      event.preventDefault();
+
+      alert("Clearing tables...");
+      location.reload();
+      $.post("/api/delete", function (data) { });
+    });
   </script>
 
 </body>
