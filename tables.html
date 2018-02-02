@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Hells Kitchen</title>
+  <!-- Latest compiled and minified CSS & JS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="jumbotron" style="text-align:center">
+      <h1><span class="glyphicon glyphicon-fire"></span>Hells Kitchen Express</h1>
+      <h3>The best reservation system on the net!</h3>
+      <hr>
+      <a href="/reserve">
+        <button type="button" class="btn btn-danger btn-lg" id="reservation-btn">
+          <span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button>
+      </a>
+      <a href="/">
+        <button type="button" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-home"></span> </button>
+      </a>
+
+    </div>
+    <div class="row">
+
+      <div class="col-lg-12">
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <strong>Current Reservation</strong>
+            </h3>
+          </div>
+          <div class="panel-body" id="reservations">
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <strong>Waiting List</strong>
+            </h3>
+          </div>
+          <div class="panel-body" id="waitlist">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Control Panel</p>
+        <p>
+          <a href="#" id="clear">Clear Table</a>
+           | 
+          <a href="/api/tables">API Table Link</a>
+           | 
+          <a href="api/waitlist">API Wait List</a>
+        </p>
+      </div>
+    </footer>
+  </div>
+<!--     SERVER CODE   -->
+
+  <script type="text/javascript">
+    
+      $.get("/api/tables", function (data) {
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+            var newDiv = $("<div class='well'>").attr("id","tablewell" + i);
+            var newH2 = $("<h2>");
+            var newSpan = $("<span class='label label-primary'>").text(i + 1);
+            
+            newH2.append(newSpan);
+            newH2.append(' | ' + data[i].customerName);
+            newDiv.append(newH2);
+
+            $("#reservations").append(newDiv);
+
+          
+        }
+      });
+  </script>
+  
+</body>
+
+</html>
