@@ -13,7 +13,14 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var restaurantTables = [];
+var restaurantTables = [
+    {
+        "customerName": "Nick",
+        "phoneNumber": "5201234567",
+        "customerEmail": "nick@example.com",
+        "customerID": "nick"
+    }
+];
 var tableLimit = 5;
 var waitingList = [];
 
