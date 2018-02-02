@@ -94,11 +94,13 @@
                 customerID: $('#reserve_uniqueID').val().trim()
             };
             console.log(newRes);
-            $.post("/api/new", newRes, function (data) {
-                if (data == true) {
+            $.post("/api/new", newRes)
+            .then(function (data) {
+                console.log(data);
+                if (data) {
                     alert("YOU ARE A WONDERFUL HUMAN BEING AND YOU ARE BOOKED!")
                 }
-                else if (data == false) {
+                else {
                     alert("YOU HAVE FAILED TO SECURE A BOOKING AND ARE NOW ON THE WAITING LIST. BETTER LUCK NEXT TIME.")
                 }
 
@@ -107,8 +109,14 @@
                 $('#reserve_email').val("");
                 $('#reserve_uniqueID').val("");
             });
+        });
+
         
     </script>
+
+</body>
+
+</html>
 
 </body>
 
