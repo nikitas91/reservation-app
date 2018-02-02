@@ -17,19 +17,16 @@
     <div class="container">
         <div class="jumbotron" style="text-align:center">
             <h1>
-                <span class="glyphicon glyphicon-fire"></span>Hot Restaurant</h1>
+                <span class="glyphicon glyphicon-fire"></span> Hot Restaurant
+            </h1>
             <h3>We only have 5 tables! Book your seat before they all are gone!</h3>
             <hr>
-            <a href="/">
-                <button type="button" class="btn btn-lg btn-primary">
-                    <span class="glyphicon glyphicon-list-alt"></span>View Tables</button>
+            <a href="/" type="button" class="btn btn-lg btn-primary">
+                <span class="glyphicon glyphicon-list-alt"></span> View Tables
             </a>
-            <button type="button" class="btn btn-lg btn-danger">
-                <span class="glyphicon glyphicon-credit-card"></span> Make Reservations</button>
+            <a href="/reserve" type="button" class="btn btn-lg btn-danger">
+                <span class="glyphicon glyphicon-credit-card"></span> Make Reservations
             </a>
-
-
-
         </div>
     </div>
     <footer class="footer">
@@ -40,27 +37,6 @@
             </p>
         </div>
     </footer>
-    </div>
-
-    <script type="text/javascript">
-        // Question: What does this code do?
-        $("#add-btn").on("click", function (event) {
-            event.preventDefault();
-            var newCharacter = {
-                name: $("#name").val().trim(),
-                role: $("#role").val().trim(),
-                age: $("#age").val().trim(),
-                forcePoints: $("#force-points").val().trim()
-            };
-
-            // Question: What does this code do??
-            $.post("/api/new", newCharacter)
-                .then(function (data) {
-                    console.log(data);
-                    alert("Adding character...");
-                });
-        });
-    </script>
 
 </body>
 
