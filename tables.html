@@ -49,7 +49,7 @@
             </h3>
           </div>
           <div class="panel-body" id="waitlist">
-            
+
           </div>
         </div>
       </div>
@@ -59,9 +59,9 @@
         <p>Control Panel</p>
         <p>
           <a href="#" id="clear">Clear Table</a>
-           | 
+           |
           <a href="/api/tables">API Table Link</a>
-           | 
+           |
           <a href="api/waitlist">API Wait List</a>
         </p>
       </div>
@@ -70,25 +70,23 @@
 <!--     SERVER CODE   -->
 
   <script type="text/javascript">
-    
+
       $.get("/api/tables", function (data) {
         console.log(data);
         for (var i = 0; i < data.length; i++) {
             var newDiv = $("<div class='well'>").attr("id","tablewell" + i);
             var newH2 = $("<h2>");
             var newSpan = $("<span class='label label-primary'>").text(i + 1);
-            
+
             newH2.append(newSpan);
             newH2.append(' | ' + data[i].customerName);
             newDiv.append(newH2);
 
             $("#reservations").append(newDiv);
-
-          
         }
       });
   </script>
-  
+
 </body>
 
 </html>
