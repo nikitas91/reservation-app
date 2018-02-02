@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <title>Reservations</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1 class="text-center">
+                <span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+            <hr>
+            <h2 class="text-center">Make Your Reservation</h2>
+            <br>
+
+            <div class="text-center">
+                <a href="/tables">
+                    <button type="button" class="btn btn-lg btn-primary">
+                        <span class="glyphicon glyphicon-list-alt"></span> View Tables</button>
+                </a>
+                <a href="/">
+                    <button type="button" class="btn btn-lg btn-default">
+                        <span class="glyphicon glyphicon-home">Home</span>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Table Reservation</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="">Name</label>
+                            <input type="text" class="form-control" id="reserve_name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Phone Number</label>
+                            <input type="text" class="form-control" id="reserve_phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="text" class="form-control" id="reserve_email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Unique ID</label>
+                            <input type="text" class="form-control" id="reserve_uniqueID">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <footer class="footer">
+            <div class="container">
+                <p>
+                    <a href="/api/tables">API Table Link</a>
+                    |
+                    <a href="/api/waitlist">API Waitlist</a>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+    <script type="text/javascript">
+        $(".submit").on("click", function () {
+            var newRes = {
+                customerName: $('#reserve_name').val().trim(),
+                phoneNumber: $('#reserve_phone').val().trim(),
+                customerEmail: $('#reserve_email').val().trim(),
+                customerID: $('#reserve_uniqueID').val().trim()
+            };
+            console.log(newRes);
+            $.post("/api/new", newRes, function (data) {
+                if (data == true) {
+                    alert("YOU ARE A WONDERFUL HUMAN BEING AND YOU ARE BOOKED!")
+                }
+                else if (data == false) {
+                    alert("YOU HAVE FAILED TO SECURE A BOOKING AND ARE NOW ON THE WAITING LIST. BETTER LUCK NEXT TIME.")
+                }
+
+                $('#reserve_name').val("");
+                $('#reserve_phone').val("");
+                $('#reserve_email').val("");
+                $('#reserve_uniqueID').val("");
+            });
+        
+    </script>
+
+</body>
+
+</html>
