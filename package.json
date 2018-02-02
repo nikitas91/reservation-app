@@ -1,0 +1,27 @@
+{
+  "name": "reservation-app",
+  "version": "1.0.0",
+  "description": "Reservation Web Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikitas91/reservation-app.git"
+  },
+  "keywords": [
+    "reservation-app"
+  ],
+  "author": "Nikita, Will, Ravi, JP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikitas91/reservation-app/issues"
+  },
+  "homepage": "https://github.com/nikitas91/reservation-app#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
